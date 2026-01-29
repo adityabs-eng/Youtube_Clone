@@ -5,7 +5,7 @@ const storage = multer.diskStorage({
     cb(null, "./public/temp"); // Specify the destination directory 
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop());
+        cb(null,file.originalname); // Use the original file name
     }
 });
 
