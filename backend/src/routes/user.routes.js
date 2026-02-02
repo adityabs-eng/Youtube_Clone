@@ -1,6 +1,7 @@
 import express from 'express';
-import { registerUser } from '../controllers/user.controller.js';
+import { registerUser,loginUser,logoutUser } from '../controllers/user.controller.js';
 import {upload} from '../middlewares/multer.middleware.js';
+import { verifyJWT } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
@@ -11,5 +12,8 @@ router.post('/register', upload.fields([
 
 // router.route('/login').get(registerUser).post(registerUser); // Example for additional routes   
 
+router.post('/login',loginUser);
+
+router.post('/logout',verifyJWT,logoutUser);
 
 export default router;
